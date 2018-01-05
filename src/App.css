@@ -29,5 +29,6 @@
 
 button {
   background: lightblue;
-  margin: 10%;
+  margin: 25px;
+  padding: 10px;
 }

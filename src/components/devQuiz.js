@@ -2,10 +2,15 @@ import React from 'react';
 
 class DevQuiz extends React.Component {
   render() {
-    return(
-      <p> devQuiz</p>
-    )
 
+    const { details } = this.props;
+    return(
+
+      <li className="quiz-questions">
+        <h3>{details.question}</h3>
+      </li>
+
+    )
   }
 }
 

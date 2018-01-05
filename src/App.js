@@ -11,6 +11,7 @@ class App extends Component {
   constructor() {
     super();
 
+    // this.goToQuiz = this.goToQuiz.bind(this);
     this.loadAbstractQuiz = this.loadAbstractQuiz.bind(this);
     this.loadDevQuiz = this.loadDevQuiz.bind(this);
     
@@ -26,46 +27,49 @@ class App extends Component {
 
   loadAbstractQuiz() {
     this.setState({
-      quizAbstract: QuizData.quizzes[0]
+      quizAbstract: QuizData.quizzes[0].questions
     })
   }
 
   loadDevQuiz() {
     this.setState({
-      quizDev: QuizData.quizzes[0]
+      quizDev: QuizData.quizzes[1].questions
     })
   }
-
-  // componentDidMount() {
-  //   let quizData = require('./quiz.json');
-  //   console.log(quizData.quizzes)
-  //   // this.setState({
-  //   //   Data: quizzes.title
-  //   // });
-  // }
-
-  // state = {data: []}
-  
-  //   componentDidMount() {
-  //     fetch('/data')
-  //       .then(res => res.json())
-  //       .then(data => this.setState({ data }));
-  //   }
-
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Doomsday Quiz</h1>
+          <h1 className="App-title">Big Bad Quiz</h1>
         </header>
-        <div className="appScreen">
-          <Quizzes loadAbstractQuiz={this.loadAbstractQuiz} loadDevQuiz={this.loadDevQuiz} />
-          <AbstractQuiz  />
-          <DevQuiz />
-        </div>
 
+        <div className="appScreen">
+          <div className="quizzes">
+            <Quizzes loadAbstractQuiz={this.loadAbstractQuiz} loadDevQuiz={this.loadDevQuiz} />
+          </div>
+
+          <section className="abstractContainer">
+            <ol className="abstractQuestions">
+              {
+                Object
+                  .keys(this.state.quizAbstract)
+                  .map(key => <AbstractQuiz key={key} details={this.state.quizAbstract[key]} />)
+              }
+            </ol>
+          </section>
+
+          <section className="devContainer">
+            <ol className="devQuestions">
+              {
+                Object
+                  .keys(this.state.quizDev)
+                  .map(key => <DevQuiz key={key} details={this.state.quizDev[key]} />)
+              }
+            </ol>
+          </section>
+        </div>
       </div>
     );
   }
