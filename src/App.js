@@ -1,31 +1,48 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import Data from './quiz.json';
-import Quizzes from './components/quizzes'
-import abstractQuiz from './components/abstractQuiz'
-import devQuiz from './components/devQuiz'
+import QuizData from './quiz.json';
+import Quizzes from './components/quizzes';
+import AbstractQuiz from './components/abstractQuiz';
+import DevQuiz from './components/devQuiz';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
+    this.loadAbstractQuiz = this.loadAbstractQuiz.bind(this);
+    this.loadDevQuiz = this.loadDevQuiz.bind(this);
+    
+    // Get Initial State
     this.state = {
-      quizzes: [],
-      title: [],
-      questions: [],
-      answers: []
-    }
+      quizAbstract: {},
+      quizDev: {},
+      title: {},
+      questions: {},
+      answers: {}
+    };
   }
 
-  componentDidMount() {
-    let quizData = require('./quiz.json');
-    console.log(quizData.quizzes)
-    // this.setState({
-    //   Data: quizzes.title
-    // });
+  loadAbstractQuiz() {
+    this.setState({
+      quizAbstract: QuizData.quizzes[0]
+    })
   }
+
+  loadDevQuiz() {
+    this.setState({
+      quizDev: QuizData.quizzes[0]
+    })
+  }
+
+  // componentDidMount() {
+  //   let quizData = require('./quiz.json');
+  //   console.log(quizData.quizzes)
+  //   // this.setState({
+  //   //   Data: quizzes.title
+  //   // });
+  // }
 
   // state = {data: []}
   
@@ -44,7 +61,9 @@ class App extends Component {
           <h1 className="App-title">Doomsday Quiz</h1>
         </header>
         <div className="appScreen">
-          <Quizzes />
+          <Quizzes loadAbstractQuiz={this.loadAbstractQuiz} loadDevQuiz={this.loadDevQuiz} />
+          <AbstractQuiz  />
+          <DevQuiz />
         </div>
 
       </div>

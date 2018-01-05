@@ -1,12 +1,14 @@
 import React from 'react';
 
-class abstractQuiz extends React.Component {
+class AbstractQuiz extends React.Component {
   render() {
     return(
-      <p> ABSTRACT  Quiz</p>
+      <section className="abstractQuiz">
+        <h1>Abstract Quiz</h1>
+      </section>
     )
 
   }
 }
 
-export default abstractQuiz;
+export default AbstractQuiz;

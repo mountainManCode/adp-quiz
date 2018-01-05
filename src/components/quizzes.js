@@ -1,15 +1,13 @@
 import React from 'react';
-// import Data from '../quiz.json';
 
 class Quizzes extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       quizTitles: [],
       abstractTitle: [],
-      devTitle: [],
-      questions: [],
+      devTitle: []
     }
   }
   componentDidMount() {
@@ -26,15 +24,16 @@ class Quizzes extends React.Component {
     return(
       <div className="selectQuiz">
         
-        <div className="abstractQuiz">
-          <button type="submit">{this.state.quizTitles[0]}</button>
+        <div>
+          <button onClick={this.props.loadAbstractQuiz}>
+            {this.state.quizTitles[0]}
+          </button>
         </div>
         <div className="devQuiz">
-          <button type="submit">{this.state.quizTitles[1]}</button>
+          <button onClick={this.props.loadDevQuiz}>{this.state.quizTitles[1]}</button>
         </div>
     </div>
     )
-
   }
 }
 
