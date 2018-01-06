@@ -5,6 +5,7 @@ import QuizData from './quiz.json';
 import Quizzes from './components/quizzes';
 import AbstractQuiz from './components/abstractQuiz';
 import DevQuiz from './components/devQuiz';
+// import SelectAnswer from './components/selectAnswer';
 
 class App extends Component {
 
@@ -55,9 +56,10 @@ class App extends Component {
               {
                 Object
                   .keys(this.state.quizAbstract)
-                  .map(key => <AbstractQuiz key={key} details={this.state.quizAbstract[key]} />)
+                  .map(key => <AbstractQuiz key={key} details={this.state.quizAbstract[key]} quizAbstract={this.state.quizAbstract} />)
               }
             </ol>
+            <button type="submit">Submit Answer</button>
           </section>
 
           <section className="devContainer">
@@ -69,6 +71,11 @@ class App extends Component {
               }
             </ol>
           </section>
+          {/* <section className="answersContainer">
+            <ul className="answersList">
+              <SelectAnswer quizAbstract={this.state.quizAbstract} quizDev={this.state.quizDev}  />
+            </ul>
+          </section> */}
         </div>
       </div>
     );
